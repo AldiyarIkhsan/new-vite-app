@@ -1,0 +1,22 @@
+.pagination {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.page-item {
+    color: #172B4D;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+.page-item-active {
+    background-color: #172B4D;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+}

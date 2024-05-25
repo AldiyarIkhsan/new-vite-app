@@ -1,0 +1,10 @@
+.container-wrapper {
+  padding: 2rem;
+  max-width: 1100px;
+}
+
+#root {
+  max-width: 1180px;
+  margin: 0 auto;
+  text-align: center;
+}
