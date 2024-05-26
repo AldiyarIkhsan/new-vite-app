@@ -54,10 +54,16 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
+  cursor: pointer;
 }
 
 .social-media-wrapper {
   display: flex;
   justify-content: space-between;
   gap: 48px;
+}
+
+.red-background {
+  background-color: red;
+  color: white;
 }

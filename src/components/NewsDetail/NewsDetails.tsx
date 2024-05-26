@@ -14,15 +14,11 @@ import CommentList from "../Comment/CommentsList";
 import CommentForm from "../Comment/CommentForm";
 import "./NewsDetails.css";
 import NewsListUnderDetails from "./NewsListUnderDetails";
-
 import Facebook from "../../Images/Facebook.png";
-
 import Twitter from "../../Images/twitter.png";
 import vk from "../../Images/vk.png";
 import Like from "../../Images/like.png";
-
 import Tag from "../Tag/Tag";
-
 import { colors, headerList } from "../NewsList/consts";
 
 function NewsDetail() {
@@ -30,6 +26,16 @@ function NewsDetail() {
   const [post, setPost] = useState<PostResponse | null>(null);
   const [images, setImages] = useState<ImageResponse[] | null>(null);
   const [comments, setComments] = useState<CommentsResponse[]>([]);
+  const [likeCount, setLikeCount] = useState(25);
+  const [isRed, setIsRed] = useState(false);
+
+  const handleLikeClick = () => {
+    setLikeCount(likeCount + 1);
+    setIsRed(true);
+    setTimeout(() => {
+      setIsRed(false);
+    }, 250);
+  };
 
   const onGetPosts = async () => {
     const result = await getPostDetails(id!);
@@ -81,7 +87,10 @@ function NewsDetail() {
       <h3 className="news-detail-title">{post.title}</h3>
 
       <div className="news-detail-info">
-        <Tag title={headerList[post.userId-1].name} color={colors[post.userId % 8]} />
+        <Tag
+          title={headerList[post.userId - 1].name}
+          color={colors[post.userId % 8]}
+        />
         <p>
           <strong>12 қараша 2019 </strong>
         </p>
@@ -151,14 +160,23 @@ function NewsDetail() {
         </p>
 
         <div className="social-media-wrapper">
-          <div className="social-media">
+          <div
+            className={`social-media ${isRed ? "red-background" : ""}`}
+            onClick={handleLikeClick}
+          >
             <img src={Like} alt="Like icon" />
-            Ұнайды (25)
+            Ұнайды ({likeCount})
           </div>
           <div className="social-media">
-            <img src={Facebook} alt="Facebook icon" />
-            <img src={Twitter} alt="Twitter icon" />
-            <img src={vk} alt="VK icon" />
+            <a href="https://www.facebook.com/?locale=ru_RU">
+              <img src={Facebook} alt="Facebook icon" />
+            </a>
+            <a href="https://x.com/?lang=ru">
+              <img src={Twitter} alt="Twitter icon" />
+            </a>
+            <a href="https://vk.com/">
+              <img src={vk} alt="VK icon" />
+            </a>
           </div>
         </div>
 
